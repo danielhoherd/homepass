@@ -7,5 +7,6 @@ CREATE TABLE aps(
     last_used text,
     PRIMARY KEY (mac,  ssid)
 );
+-- The following will not add fields that do not exist for existing mac,ssid pairs
 .mode csv
 .import ../maclist.csv aps
