@@ -1,0 +1,131 @@
+http://www.jenssegers.be/blog/43/Realtek-RTL8188-based-access-point-on-Raspberry-Pi
+https://w1.fi/hostapd/
+http://elinux.org/RPI-Wireless-Hotspot
+http://www.daveconroy.com/turn-your-raspberry-pi-into-a-wifi-hotspot-with-edimax-nano-usb-ew-7811un-rtl8188cus-chipset/
+
+Belkin:
+
+May  9 18:30:34 raspi2 kernel: [ 2807.365115] usb 1-1.4: new high-speed USB device number 8 using dwc_otg
+May  9 18:30:34 raspi2 kernel: [ 2807.482722] usb 1-1.4: New USB device found, idVendor=050d, idProduct=935a
+May  9 18:30:34 raspi2 kernel: [ 2807.482800] usb 1-1.4: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+May  9 18:30:34 raspi2 kernel: [ 2807.482820] usb 1-1.4: Product: 802.11 n WLAN
+May  9 18:30:34 raspi2 kernel: [ 2807.482837] usb 1-1.4: Manufacturer: Ralink
+May  9 18:30:34 raspi2 kernel: [ 2807.482856] usb 1-1.4: SerialNumber: 1.0
+May  9 18:30:35 raspi2 kernel: [ 2807.575143] usb 1-1.4: reset high-speed USB device number 8 using dwc_otg
+May  9 18:30:35 raspi2 kernel: [ 2807.686052] ieee80211 phy2: rt2x00_set_rt: Info - RT chipset 3070, rev 0201 detected
+May  9 18:30:35 raspi2 kernel: [ 2807.733147] ieee80211 phy2: rt2x00_set_rf: Info - RF chipset 0005 detected
+May  9 18:30:35 raspi2 kernel: [ 2807.945733] ieee80211 phy2: rt2x00lib_request_firmware: Info - Loading firmware file 'rt2870.bin'
+May  9 18:30:35 raspi2 kernel: [ 2807.945976] ieee80211 phy2: rt2x00lib_request_firmware: Info - Firmware detected - version: 0.29
+May  9 18:30:36 raspi2 kernel: [ 2808.617816] IPv6: ADDRCONF(NETDEV_UP): wlan0: link is not ready
+May  9 18:30:37 raspi2 kernel: [ 2810.461157] usb 1-1.4: USB disconnect, device number 8
+
+
+Edimax:
+
+May  9 18:30:41 raspi2 kernel: [ 2814.535130] usb 1-1.4: new high-speed USB device number 9 using dwc_otg
+May  9 18:30:42 raspi2 kernel: [ 2814.638236] usb 1-1.4: New USB device found, idVendor=7392, idProduct=7811
+May  9 18:30:42 raspi2 kernel: [ 2814.638276] usb 1-1.4: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+May  9 18:30:42 raspi2 kernel: [ 2814.638296] usb 1-1.4: Product: 802.11n WLAN Adapter
+May  9 18:30:42 raspi2 kernel: [ 2814.638313] usb 1-1.4: Manufacturer: Realtek
+May  9 18:30:42 raspi2 kernel: [ 2814.638332] usb 1-1.4: SerialNumber: 00e04c000001
+May  9 18:30:43 raspi2 kernel: [ 2815.904837] IPv6: ADDRCONF(NETDEV_UP): wlan0: link is not ready
+May  9 18:30:43 raspi2 kernel: [ 2815.923190] IPv6: ADDRCONF(NETDEV_UP): wlan0: link is not ready
+May  9 18:30:43 raspi2 kernel: [ 2815.943540] IPv6: ADDRCONF(NETDEV_UP): wlan0: link is not ready
+May  9 18:30:47 raspi2 kernel: [ 2819.677951] usb 1-1.4: USB disconnect, device number 9
+May  9 18:30:47 raspi2 kernel: [ 2819.678528] rtw_cmd_thread: DriverStopped(0) SurpriseRemoved(1) break at line 482
+
+= /etc/rc.local
+
+_IP=$(hostname -I) || true
+if [ "$_IP" ]; then
+  printf "My IP address is %s\n" "$_IP"
+fi
+service hostapd stop
+screen -S HomePassScript sh /root/homepass.sh
+exit 0
+
+= setup.sh
+
+apt-get install -y bridge-utils hostapd sqlite3 screen
+
+= homepass.sql
+
+CREATE TABLE aps(
+    mac text NOT NULL,
+    ssid text NOT NULL,
+    last_used text,
+    PRIMARY KEY (mac, ssid)
+);
+
+= homepass.sh
+
+#!/bin/bash -x
+
+CONFIG_FILE=/etc/hostapd/hostapd.conf
+RELAY_TIME=200
+DB=/root/homepass.db
+
+service hostapd stop ; sleep 1 ;
+pkill hostapd ; sleep 1 ;
+pkill -9 hostapd
+
+while true ; do
+    p=$(sqlite3 "${DB}" "select * from (select mac, ssid from aps order by last_used asc limit 25 ) order by random() limit 1 ;")
+    MAC="${p%|*}"
+    SSID="${p#*|}"
+    [ ! -z "$MAC" ] && [ ! -z "$SSID" ] || exit 1
+    sqlite3 "${DB}" "update aps set last_used = datetime('now') where mac = '$MAC' and ssid = '$SSID' ;"
+
+    cat > $CONFIG_FILE <<EOF
+ssid=$SSID
+bssid=$MAC
+
+interface=wlan0
+bridge=br0
+ctrl_interface=wlan0
+ctrl_interface_group=0
+hw_mode=g
+channel=5
+wpa=0
+rsn_pairwise=CCMP
+beacon_int=100
+auth_algs=3
+
+driver=nl80211
+ieee80211n=1
+
+macaddr_acl=1
+accept_mac_file=/etc/hostapd/accept
+
+wmm_enabled=0
+eap_reauth_period=360000000
+EOF
+
+    echo
+    date "+%F %T *******************************************************"
+    echo "                    Starting relay ${MAC} ${SSID} for ${RELAY_TIME} seconds"
+    echo
+    echo
+    timeout "${RELAY_TIME}" hostapd /etc/hostapd/hostapd.conf
+done
+
+
+= /etc/network/interfaces
+
+auto lo
+auto br0
+iface lo inet loopback
+iface br0 inet dhcp
+    bridge_fd 1
+    bridge_hello 3
+    bridge_maxage 10
+    bridge_stp off
+    bridge_ports eth0 wlan0
+
+allow-hotplug eth0
+iface eth0 inet manual
+
+allow-hotplug wlan0
+iface wlan0 inet manual
+wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf
+
