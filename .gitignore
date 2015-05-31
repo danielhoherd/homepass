@@ -6,9 +6,12 @@
 *.db-*
 *.gz
 *.key
+*.kml
+*.kmz
 *.log
 *.pyc
 *.pyc
+*.stackdump
 *.svn
 *.swo
 *.swp
@@ -19,4 +22,3 @@
 .idea
 __pycache__
 db.sqlite3
-*.stackdump
