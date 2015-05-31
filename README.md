@@ -5,7 +5,6 @@ Please fork this repo, modify it and submit a pull request if you want to add to
 
 # TODO:
 - Make a csv tender that validates, removes duplicate MAC,SSID pairs, and adds `NZ@McD1` for all `attwifi` entries
-- Make some lat/lon integrations. Map, create csv within certain range, etc..
 
 # Resources
 
