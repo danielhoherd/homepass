@@ -7,3 +7,5 @@ CREATE TABLE aps(
     last_used text,
     PRIMARY KEY (mac,  ssid)
 );
+.mode csv
+.import ../maclist.csv aps
