@@ -5,17 +5,24 @@
 Takes a csv file formatted as mac,ssid,lat,lon and creates a KML for all relevant entries.
 """
 
+import argparse
 import csv
 import simplekml
 kml = simplekml.Kml()
 
-with open('maclist.csv') as input:
+parser = argparse.ArgumentParser(description=__doc__)
+parser.add_argument('-f', metavar='filename', help="csv file", default="maclist.csv")
+args = parser.parse_args()
+
+with open(args.f) as input:
     cr = csv.reader(input)
-    next(cr, None) # skip header
     for row in cr:
-        if (row[3]) and (float(row[3]) != 0):
-            print(row)
-            ap = "{}-{}".format(row[1],row[0])
-            kml.newpoint(name=ap, coords=[(row[3],row[2])])
+        try:
+            if (row[3]) and (float(row[3]) != 0):
+                print(row)
+                ap = "{}-{}".format(row[1],row[0])
+                kml.newpoint(name=ap, coords=[(row[3],row[2])])
+        except ValueError:
+            pass
 
 kml.save("maclist.kml")
