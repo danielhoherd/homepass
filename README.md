@@ -12,3 +12,5 @@ Please fork this repo, modify it and submit a pull request if you want to add to
 - [Homepass.info](http://homepass.info) - The widely referenced community resource spreadsheet.
 - [SpillPass Pi](http://www.spillmonkey.com/?page_id=5) - Raspberry Pi homepass that was inspirational for some of the software here.
 - [relaymyhome](https://github.com/taintedzodiac/relaymyhome) - OS X homepass software that has worked well for several years and has several contributors with several forks.
+- [3dbrew.org](http://3dbrew.org) - Wiki with information about 3DS hacking, including homepass.
+- [3dbrew - Nintendo Zone](http://3dbrew.org/wiki/Nintendo_Zone) - 3dbrew info about Nintendo Zones
