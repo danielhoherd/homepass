@@ -1,0 +1,10 @@
+# /etc/rc.local file for homepass on Raspian
+# HeadURL: https://github.com/danielhoherd/homepass/blob/master/RaspberryPi/rc.local
+
+_IP=$(hostname -I) || true
+if [ "$_IP" ]; then
+  printf "My IP address is %s\n" "$_IP"
+fi
+service hostapd stop
+screen -S HomePassScript sh /root/homepass.sh
+exit 0
