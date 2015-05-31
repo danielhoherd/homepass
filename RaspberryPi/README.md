@@ -8,7 +8,8 @@ This software currently requires manual installation. Once installed, it functio
 
 # TODO:
 
-Make an installer for this software, probably with [Ansible](http://www.ansible.com/).
+- Make an installer for this software, probably with [Ansible](http://www.ansible.com/).
+- Add iptables rules that restrict wifi traffic to Nintendo internet addresses
 
 # About
 
