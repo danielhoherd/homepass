@@ -1,10 +1,25 @@
 # Overview
 
-This software is intended for use on a Raspberry Pi. When installed correctly, your Pi will start up and immediately begin Homepassing.
+This software is intended for use on a Raspberry Pi. When installed correctly, your Pi will
+start up and immediately begin Homepassing.
 
 # Status
 
-This software currently requires manual installation. Once installed, it functions perfectly, and there are no known bugs.
+This software currently requires manual installation. Once installed, it functions perfectly,
+and there are no known bugs.
+
+# Difficulties
+
+The hardest part about homepassing on Linux, and thus Raspian, is finding a wifi adapter that
+supports hostapd, and enables you to change your MAC address. Unfortunately it's quite common
+to find an adapter that does one and not the other. There are a few verified working adapters
+listed on the [Homepass.info Hardware tab](https://docs.google.com/a/zoosk.com/spreadsheet/lv?key=0AvvH5W4E2lIwdEFCUkxrM085ZGp0UkZlenp6SkJablE&f=true&noheader=true&gid=2),
+and I have had luck with two of them. Unfortunately some manufacturers have swapped the chipset
+of their devices, so buying a particular model doesn't guarantee you a working chipset.
+
+## Known good wifi chipsets:
+- rt2800
+- rt5370
 
 # TODO:
 
