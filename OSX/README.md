@@ -1,0 +1,2 @@
+- [RelayMyHome - Mainline](https://github.com/taintedzodiac/relaymyhome) - The mainline branch by TaintedZodiac has been tested to work through many versions.
+- [RelayMyHome - Aliang](https://github.com/aliang/relaymyhome) - This code in this fork of TaintedZodiac's RelayMyHome is much better, and it has several features that taintedzodiac's version does not have.
