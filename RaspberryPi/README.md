@@ -9,7 +9,8 @@ This software currently requires manual installation. Once installed, it functio
 # TODO:
 
 - Make an installer for this software, probably with [Ansible](http://www.ansible.com/).
-- Add iptables rules that restrict wifi traffic to Nintendo internet addresses
+- Add iptables rules that restrict wifi traffic to Nintendo internet addresses.
+- Make [hostapd](https://w1.fi/hostapd/) match substring of MAC address rather than full strings.
 
 # About
 
