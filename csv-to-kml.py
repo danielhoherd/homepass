@@ -19,7 +19,6 @@ with open(args.f) as input:
     for row in cr:
         try:
             if (row[3]) and (float(row[3]) != 0):
-                print(row)
                 ap = "{}-{}".format(row[1],row[0])
                 kml.newpoint(name=ap, coords=[(row[3],row[2])])
         except ValueError:
