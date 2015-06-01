@@ -28,4 +28,4 @@ print("{} {}".format(args.i, args.o))
 with open(args.i) as input, open(args.o) as output:
     cr = csv.reader(input)
     for row in cr:
-        db.execute("insert into aps (mac,ssid,lat,lon) values(?,?,?,?",row)
+        db.execute("insert into aps (mac,ssid,lat,lon) values(?,?,?,?",row[:4])
