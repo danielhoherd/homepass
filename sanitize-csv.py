@@ -1,7 +1,7 @@
 #!/usr/local/bin/python3
 
 """
-Tidy's up the csv syntax and de-dupes mac,ssid pairs.
+Tidies up the csv syntax and de-dupes mac,ssid pairs.
 """
 
 print('This does not work yet.')
