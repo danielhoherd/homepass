@@ -1,4 +1,4 @@
--- HeadURL: https://github.com/danielhoherd/homepass/blob/master/RaspberryPi/homepass.sql
+-- HeadURL: https://github.com/danielhoherd/homepass/blob/master/homepass.sql
 
 PRAGMA foreign_keys=OFF;
 CREATE TABLE aps(
@@ -11,4 +11,4 @@ CREATE TABLE aps(
 );
 -- The following will not import any fields for mac,ssid pairs that already exist in the db
 .mode csv
-.import ../maclist.csv aps
+.import maclist.csv aps
