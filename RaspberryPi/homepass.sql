@@ -1,3 +1,5 @@
+-- HeadURL: https://github.com/danielhoherd/homepass/blob/master/RaspberryPi/homepass.sql
+
 PRAGMA foreign_keys=OFF;
 CREATE TABLE aps(
     mac text NOT NULL,
