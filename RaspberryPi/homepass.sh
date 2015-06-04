@@ -10,7 +10,8 @@ pkill hostapd ; sleep 1 ;
 pkill -9 hostapd
 
 while true ; do
-    p=$(sqlite3 "${DB}" "select * from (select mac, ssid from aps order by last_used asc limit 25 ) order by random() limit 1 ;")
+    #p=$(sqlite3 "${DB}" "select * from (select mac, ssid from aps order by last_used asc limit 25 ) order by random() limit 1 ;")
+    p=$(sqlite3 "${DB}" "select * from (select mac,ssid from aps where last_used < datetime('now','-5 days') or last_used is NULL) order by random() limit 1 ;")
     MAC="${p%|*}"
     SSID="${p#*|}"
     [ ! -z "$MAC" ] && [ ! -z "$SSID" ] || exit 1
