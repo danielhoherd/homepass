@@ -10,7 +10,7 @@ and there are no known bugs.
 
 # Difficulties
 
-The hardest part about homepassing on Linux, and thus Raspian, is finding a wifi adapter that
+The hardest part about homepassing on Linux, and thus Raspbian, is finding a wifi adapter that
 supports hostapd, and enables you to change your MAC address. Unfortunately it's quite common
 to find an adapter that does one and not the other. There are a few verified working adapters
 listed on the [Homepass.info Hardware tab](https://docs.google.com/a/zoosk.com/spreadsheet/lv?key=0AvvH5W4E2lIwdEFCUkxrM085ZGp0UkZlenp6SkJablE&f=true&noheader=true&gid=2),

@@ -1,4 +1,4 @@
-# /etc/rc.local file for homepass on Raspian
+# /etc/rc.local file for homepass on Raspbian
 # HeadURL: https://github.com/danielhoherd/homepass/blob/master/RaspberryPi/rc.local
 
 _IP=$(hostname -I) || true
