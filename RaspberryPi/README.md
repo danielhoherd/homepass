@@ -1,5 +1,5 @@
 # Overview
-This software is intended for use on a Raspberry Pi. When installed correctly, your Pi will start up and immediately begin Homepassing.
+This software is intended for use on a Raspberry Pi using Raspbian 7. When installed correctly, your Pi will start up and immediately begin Homepassing.
 
 # Status
 This software currently requires manual installation. Once installed, it functions perfectly, and there are no known bugs.
