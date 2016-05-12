@@ -1,0 +1,13 @@
+[Unit]
+Description=Homepass for 3DS
+After=sysinit.target
+
+[Service]
+StandardInput=tty
+StandardOutput=tty
+Restart=always
+RestartSec=1
+ExecStart=/usr/bin/screen -S homepass /srv/homepass/homepass.sh
+
+[Install]
+WantedBy=multi-user.target
