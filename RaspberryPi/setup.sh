@@ -1,9 +1,12 @@
-#!/bin/bash -x
+#!/usr/bin/env bash
+set -x
+set -e
+
 #apt update
 #apt full-upgrade -y
 
 apt install -y git vim
-mkdir /srv
+if [ ! -d /srv ] ; then mkdir /srv ; fi ;
 cd /srv
 git clone https://github.com/danielhoherd/homepass
 cd homepass
