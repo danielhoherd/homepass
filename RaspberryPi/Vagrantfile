@@ -1,0 +1,22 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+######################################################################
+##############################  NOTICE  ##############################
+###
+###  This is purely for development and testing and does not actually
+###  homepass anything. See README.md for instructions.
+###
+######################################################################
+######################################################################
+
+Vagrant.configure(2) do |config|
+  config.vm.box = "debian/jessie64"
+  config.vm.provider "virtualbox" do |v|
+    v.gui = true
+  end
+
+  config.vm.provision :shell, path: "setup.sh", privileged: true
+  # vagrant plugin install vagrant-reload
+  config.vm.provision :reload
+end
