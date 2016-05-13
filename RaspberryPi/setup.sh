@@ -1,7 +1,7 @@
 #!/bin/bash -x
 apt update
 apt full-upgrade -y
-apt install -y puppet-agent
+apt install -y puppet
 puppet apply /vagrant/manifests
 
 # apt-get install -y git sqlite3 screen vim wget bridge-utils
