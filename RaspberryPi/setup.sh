@@ -2,12 +2,15 @@
 #apt update
 #apt full-upgrade -y
 
-apt install -y vim git
+apt install -y git vim
+mkdir /srv
+cd /srv
+git clone https://github.com/danielhoherd/homepass
+cd homepass
+git checkout raspbian8
 
 apt install -y puppet
-rm -rf /etc/puppet
-cp -r /vagrant /etc/puppet
-puppet apply /vagrant/manifests
+puppet apply /srv/homepass/RaspberryPi/manifests
 
 # apt-get install -y git sqlite3 screen vim wget bridge-utils
 # brctl addbr br0
