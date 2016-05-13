@@ -10,7 +10,7 @@ cd homepass
 git checkout raspbian8
 
 apt install -y puppet
-puppet apply /srv/homepass/RaspberryPi/manifests
+puppet apply /srv/homepass/RaspberryPi/manifests --modulepath=/srv/homepass/RaspberrryPi/modules/homepass
 
 # apt-get install -y git sqlite3 screen vim wget bridge-utils
 # brctl addbr br0
