@@ -1,4 +1,9 @@
 class homepass {
+
+  notify {"Running homepass class":
+    withpath => true,
+  }
+
   package { 'hostapd':
     ensure => latest,
   }
