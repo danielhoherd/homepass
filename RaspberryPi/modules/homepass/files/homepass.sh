@@ -4,9 +4,7 @@ CONFIG_FILE=/etc/hostapd/hostapd.conf
 RELAY_TIME=200
 DB=/srv/homepass/lib/homepass.db
 
-service hostapd stop ; sleep 1 ;
-pkill hostapd ; sleep 1 ;
-pkill -9 hostapd
+systemctl stop hostapd ; sleep 3 ;
 
 while true ; do
     #p=$(sqlite3 "${DB}" "select * from (select mac, ssid from aps order by last_used asc limit 25 ) order by random() limit 1 ;")
