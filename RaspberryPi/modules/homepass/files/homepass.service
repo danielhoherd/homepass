@@ -7,7 +7,7 @@ StandardInput=tty
 StandardOutput=tty
 Restart=always
 RestartSec=1
-ExecStart=/usr/bin/screen -S homepass /srv/homepass/homepass.sh
+ExecStart=/usr/bin/screen -S homepass /srv/homepass/bin/homepass.sh
 
 [Install]
 WantedBy=multi-user.target

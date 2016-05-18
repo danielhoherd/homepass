@@ -2,7 +2,7 @@
 
 CONFIG_FILE=/etc/hostapd/hostapd.conf
 RELAY_TIME=200
-DB=/srv/homepass/homepass.db
+DB=/srv/homepass/lib/homepass.db
 
 service hostapd stop ; sleep 1 ;
 pkill hostapd ; sleep 1 ;
