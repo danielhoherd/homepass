@@ -1,4 +1,4 @@
--- HeadURL: https://github.com/danielhoherd/homepass/blob/master/homepass.sql
+-- https://github.com/danielhoherd/homepass/blob/master/homepass.sql
 
 PRAGMA foreign_keys=OFF;
 CREATE TABLE aps(
@@ -8,7 +8,8 @@ CREATE TABLE aps(
     lon text,
     last_used text,
     PRIMARY KEY (mac,  ssid)
-);
+) IF NOT EXISTS ;
+
 -- The following will not import any fields for mac,ssid pairs that already exist in the db
 .mode csv
 .import maclist.csv aps
