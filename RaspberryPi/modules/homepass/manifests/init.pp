@@ -8,6 +8,14 @@ class homepass {
     ensure => latest,
   }
 
+  package { 'bridge-utils':
+    ensure => latest,
+  }
+
+  package { 'sqlite3':
+    ensure => latest,
+  }
+
   file { '/etc/network/interfaces':
     ensure  => 'file',
     mode    => '0644',
