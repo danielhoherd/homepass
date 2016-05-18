@@ -9,7 +9,7 @@ class cron_puppet {
     }
     cron { 'puppet-apply':
         ensure  => present,
-        command => "( cd /etc/puppet ; /usr/bin/git reset --hard ; /usr/bin/git clean -ffdx ; /usr/bin/git pull ) 2>&1 | /usr/bin/logger -t puppet-apply",
+        command => "( cd /srv/code/homepass ; /usr/bin/git reset --hard ; /usr/bin/git clean -ffdx ; /usr/bin/git pull ) 2>&1 | /usr/bin/logger -t puppet-apply",
         user    => root,
         minute  => fqdn_rand(59, 'puppet-apply'),
         require => File['post-hook'],
