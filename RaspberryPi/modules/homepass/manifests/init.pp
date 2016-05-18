@@ -44,6 +44,22 @@ class homepass {
     group  => 'root',
   }
 
+  file { '/srv/homepass/bin/homepass.sh':
+    ensure  => 'file',
+    mode    => '0755',
+    owner   => 'root',
+    group   => 'root',
+    source  => 'puppet:///modules/homepass/homepass.sh',
+  }
+
+  file { '/srv/homepass/bin/update_db.sh':
+    ensure  => 'file',
+    mode    => '0755',
+    owner   => 'root',
+    group   => 'root',
+    source  => 'puppet:///modules/homepass/update_db.sh',
+  }
+
   file { '/etc/network/interfaces':
     ensure  => 'file',
     mode    => '0644',
