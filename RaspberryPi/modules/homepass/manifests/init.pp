@@ -40,13 +40,12 @@ class homepass {
     source  => 'puppet:///modules/homepass/homepass.service',
   }
 
-  file { '/etc/systemd/system/syslog.service':
+  file { '/etc/systemd/system/homepass.service':
     ensure => 'link',
     mode   => '777',
     group  => 'root',
     owner  => 'root',
     target => '/lib/systemd/system/homepass.service',
-    type   => 'link',
   }
 
   file { '/etc/systemd/system/getty.target.wants/getty@tty1.service':
