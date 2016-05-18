@@ -8,12 +8,14 @@ set -e
 apt install -y git vim
 if [ ! -d /srv ] ; then mkdir /srv ; fi ;
 cd /srv
+mkdir code
+cd code
 git clone https://github.com/danielhoherd/homepass
 cd homepass
 git checkout raspbian8
 
 apt install -y puppet
-puppet apply /srv/homepass/RaspberryPi/manifests --modulepath=/srv/homepass/RaspberryPi/modules
+puppet apply /srv/code/homepass/RaspberryPi/manifests --modulepath=/srv/code/homepass/RaspberryPi/modules
 
 # apt-get install -y git sqlite3 screen vim wget bridge-utils
 # brctl addbr br0

@@ -3,7 +3,7 @@
 
 set -e
 
-/usr/bin/puppet apply /etc/puppet/manifests --color=false --verbose --modulepath=/srv/homepass/RaspberryPi/modules
+/usr/bin/puppet apply /etc/puppet/manifests --color=false --verbose --modulepath=/srv/code/homepass/RaspberryPi/modules
 
 ## Log status of the Puppet run
 if [ $? -eq 0 ]
