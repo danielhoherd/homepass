@@ -16,19 +16,47 @@ class homepass {
     ensure => latest,
   }
 
+  file { '/srv/':
+    ensure => 'directory',
+    mode   => '0755',
+    owner  => 'root',
+    group  => 'root',
+  }
+
+  file { '/srv/homepass':
+    ensure => 'directory',
+    mode   => '0755',
+    owner  => 'root',
+    group  => 'root',
+  }
+
+  file { '/srv/homepass/bin':
+    ensure => 'directory',
+    mode   => '0755',
+    owner  => 'root',
+    group  => 'root',
+  }
+
+  file { '/srv/homepass/lib':
+    ensure => 'directory',
+    mode   => '0755',
+    owner  => 'root',
+    group  => 'root',
+  }
+
   file { '/etc/network/interfaces':
     ensure  => 'file',
     mode    => '0644',
-    group   => 'root',
     owner   => 'root',
+    group   => 'root',
     source  => 'puppet:///modules/homepass/interfaces',
   }
 
   file { '/etc/hostapd/hostapd.conf':
     ensure  => 'file',
     mode    => '0644',
-    group   => 'root',
     owner   => 'root',
+    group   => 'root',
     source  => 'puppet:///modules/homepass/hostapd.conf',
     require => Package['hostapd'],
   }
@@ -36,8 +64,8 @@ class homepass {
   file { '/etc/hostapd/accept':
     ensure  => 'file',
     mode    => '0644',
-    group   => 'root',
     owner   => 'root',
+    group   => 'root',
     source  => 'puppet:///modules/homepass/accept',
     require => Package['hostapd'],
   }
@@ -45,16 +73,16 @@ class homepass {
   file { '/lib/systemd/system/homepass.service':
     ensure  => 'file',
     mode    => '0644',
-    group   => 'root',
     owner   => 'root',
+    group   => 'root',
     source  => 'puppet:///modules/homepass/homepass.service',
   }
 
   file { '/etc/systemd/system/homepass.service':
     ensure => 'link',
-    mode   => '777',
-    group  => 'root',
+    mode   => '0777',
     owner  => 'root',
+    group  => 'root',
     target => '/lib/systemd/system/homepass.service',
   }
 
