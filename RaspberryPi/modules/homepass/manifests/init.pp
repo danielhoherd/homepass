@@ -8,6 +8,10 @@ class homepass {
     ensure => latest,
   }
 
+  package { 'screen':
+    ensure => latest,
+  }
+
   package { 'bridge-utils':
     ensure => latest,
   }
