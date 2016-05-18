@@ -1,7 +1,8 @@
 class homepass {
 
-  notify {"Running homepass class":
-    withpath => true,
+  service { 'networking':
+    ensure => 'running',
+    enable => true,
   }
 
   package { 'hostapd':
@@ -49,27 +50,28 @@ class homepass {
   }
 
   file { '/srv/homepass/bin/homepass.sh':
-    ensure  => 'file',
-    mode    => '0755',
-    owner   => 'root',
-    group   => 'root',
-    source  => 'puppet:///modules/homepass/homepass.sh',
+    ensure => 'file',
+    mode   => '0755',
+    owner  => 'root',
+    group  => 'root',
+    source => 'puppet:///modules/homepass/homepass.sh',
   }
 
   file { '/srv/homepass/bin/update_db.sh':
-    ensure  => 'file',
-    mode    => '0755',
-    owner   => 'root',
-    group   => 'root',
-    source  => 'puppet:///modules/homepass/update_db.sh',
+    ensure => 'file',
+    mode   => '0755',
+    owner  => 'root',
+    group  => 'root',
+    source => 'puppet:///modules/homepass/update_db.sh',
   }
 
   file { '/etc/network/interfaces':
-    ensure  => 'file',
-    mode    => '0644',
-    owner   => 'root',
-    group   => 'root',
-    source  => 'puppet:///modules/homepass/interfaces',
+    ensure => 'file',
+    mode   => '0644',
+    owner  => 'root',
+    group  => 'root',
+    source => 'puppet:///modules/homepass/interfaces',
+    notify => Service['networking'],
   }
 
   file { '/etc/hostapd/hostapd.conf':
@@ -91,11 +93,11 @@ class homepass {
   }
 
   file { '/lib/systemd/system/homepass.service':
-    ensure  => 'file',
-    mode    => '0644',
-    owner   => 'root',
-    group   => 'root',
-    source  => 'puppet:///modules/homepass/homepass.service',
+    ensure => 'file',
+    mode   => '0644',
+    owner  => 'root',
+    group  => 'root',
+    source => 'puppet:///modules/homepass/homepass.service',
   }
 
   file { '/etc/systemd/system/homepass.service':
