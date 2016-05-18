@@ -16,9 +16,3 @@ git checkout raspbian8
 
 apt install -y puppet
 puppet apply /srv/code/homepass/RaspberryPi/manifests --modulepath=/srv/code/homepass/RaspberryPi/modules
-
-# apt-get install -y git sqlite3 screen vim wget bridge-utils
-# brctl addbr br0
-# brctl addif br0 eth0
-# brctl addif br0 wlan0
-# brctl show br0
