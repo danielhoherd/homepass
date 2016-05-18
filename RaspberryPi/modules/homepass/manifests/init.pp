@@ -22,6 +22,7 @@ class homepass {
     group   => 'root',
     owner   => 'root',
     source  => 'puppet:///modules/homepass/hostapd.conf',
+    require => Package['hostapd'],
   }
 
   file { '/etc/hostapd/accept':
@@ -30,6 +31,7 @@ class homepass {
     group   => 'root',
     owner   => 'root',
     source  => 'puppet:///modules/homepass/accept',
+    require => Package['hostapd'],
   }
 
   file { '/lib/systemd/system/homepass.service':
