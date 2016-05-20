@@ -13,6 +13,10 @@ class homepass {
     ensure => latest,
   }
 
+  package { 'mosh':
+    ensure => latest,
+  }
+
   package { 'bridge-utils':
     ensure => latest,
   }
