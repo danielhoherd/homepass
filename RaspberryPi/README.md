@@ -23,12 +23,12 @@ Much of the design for this setup was inspired by the original [SpillPass](http:
 
 # TODO:
 
-- git update on boot, or perhaps on service start
-- randomize channel
-- restart service when git code is update
-- wait for boot to complete before starting homepass service
-- Add iptables rules that restrict wifi traffic to Nintendo internet addresses.
-- Make [hostapd](https://w1.fi/hostapd/) match substring of MAC address rather than full strings.
+- P1: git update on boot, or perhaps on service start
+- P1: restart service when git code is update
+- P2: wait for boot to complete before starting homepass service
+- P3: Add iptables rules that restrict wifi traffic to Nintendo internet addresses.
+- P3: randomize channel
+- P4: Make [hostapd](https://w1.fi/hostapd/) match substring of MAC address rather than full strings.
 
 # Links
 
