@@ -1,4 +1,4 @@
-#!/bin/bash -x
+#!/bin/bash
 
 CONFIG_FILE=/etc/hostapd/hostapd.conf
 RELAY_TIME=200
