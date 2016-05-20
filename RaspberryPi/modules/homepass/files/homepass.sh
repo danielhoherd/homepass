@@ -1,7 +1,7 @@
 #!/bin/bash
 
 CONFIG_FILE=/etc/hostapd/hostapd.conf
-RELAY_TIME=200
+RELAY_TIME=120
 DB=/srv/homepass/lib/homepass.db
 
 systemctl stop hostapd ; sleep 3 ;
