@@ -1,12 +1,22 @@
 # Overview
 
-This software is intended for use on a Raspberry Pi 3 using Raspbian 8. After installation, your Pi will start up and immediately begin Homepassing.
+This software is intended for use on a Raspberry Pi 3 using Raspbian 8. After installation, your Pi will start up and immediately begin Homepassing. Your Pi will be configured to automatically perform software checks once an hour and update your Pi with any changes posted to the Github repository. This is mostly for bugfixes and udpates to the database.
+
+# Installation
+
+1. Install Raspbian 8 onto a Pi 3 (or supported hardware)
+2. `wget https://raw.githubusercontent.com/danielhoherd/homepass/master/RaspberryPi/setup.sh`
+3. `sudo bash setup.sh`
 
 # Status
 
 You **must** add your 3DS MAC address to the <accept> file in order for this to work with your 3DS. This requirement will stay until there is a way to add substring matching against MAC addresses, which may never happen, or until we have iptables rules that limit traffic to only Nintendo servers. This is a security requirement and prevents passers by from accessing your home network.
 
-# Difficulties
+# About homepassing on Raspberry Pi
+
+Much of the design for this setup was inspired by the original [SpillPass](http://www.spillmonkey.com/?page_id=5), which works wonderfully on the Raspberry Pi B, but unfortunately in my experience it does not on the B+ or 2. With that in mind I decided to improve and expand on its techniques. Since then, SpillPass has been updated with a much improved overall design, so it is also worth checking out for your use case.
+
+# Difficulties with homepassing on Raspberry Pi
 
 The Raspberry Pi 3 has solved some of the difficulties listed below, but for other models of Raspberry Pi they still apply. The important factor is to find a wireless device that uses the nl80211 and has the ability to alter its MAC address.
 
@@ -16,10 +26,6 @@ The hardest part about homepassing on Linux, and thus Raspbian, is finding a wif
 
 - rt2800
 - rt5370
-
-# About
-
-Much of the design for this setup was inspired by the original [SpillPass](http://www.spillmonkey.com/?page_id=5), which works wonderfully on the Raspberry Pi B, but unfortunately in my experience it does not on the B+ or 2. With that in mind I decided to improve and expand on its techniques. Since then SpillPass has been updated with a much improved overall design, so it is also worth checking out for your use case.
 
 # TODO:
 
