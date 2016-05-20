@@ -33,6 +33,7 @@ The hardest part about homepassing on Linux, and thus Raspbian, is finding a wif
 - P1: when git code is updated, restart homepass service
 - P1: when git code is updated, update the database
 - P2: prioritize selection of community relay MACs from homepass.info list
+- P2: logging of client connections, ssid info
 - P2: wait for boot to complete before starting homepass service
 - P3: detect terminal size and format output nicely within
 - P3: Add iptables rules that restrict wifi traffic to Nintendo internet addresses.
