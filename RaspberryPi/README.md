@@ -32,6 +32,7 @@ The hardest part about homepassing on Linux, and thus Raspbian, is finding a wif
 - P1: on service start, update git prior to starting homepass.sh
 - P1: when git code is updated, restart homepass service
 - P1: when git code is updated, update the database
+- P2: make a second ethernet interface for uninterrupted local network access
 - P2: prioritize selection of community relay MACs from homepass.info list
 - P2: logging of client connections, ssid info
 - P2: wait for boot to complete before starting homepass service
