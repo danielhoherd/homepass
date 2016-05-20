@@ -29,6 +29,7 @@ The hardest part about homepassing on Linux, and thus Raspbian, is finding a wif
 
 # TODO:
 
+- P1: Fix random/uknown reboot condition
 - P1: on service start, update git prior to starting homepass.sh
 - P1: when git code is updated, restart homepass service
 - P1: when git code is updated, update the database
