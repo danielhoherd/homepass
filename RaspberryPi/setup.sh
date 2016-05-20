@@ -16,3 +16,6 @@ git checkout raspbian8
 
 apt install -y puppet
 puppet apply /srv/code/homepass/RaspberryPi/manifests --modulepath=/srv/code/homepass/RaspberryPi/modules
+
+/srv/homepass/bin/db_update.sh
+#reboot
