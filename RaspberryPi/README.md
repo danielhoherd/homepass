@@ -23,6 +23,7 @@ Much of the design for this setup was inspired by the original [SpillPass](http:
 
 # TODO:
 
+- randomize channel
 - restart service when git code is update
 - wait for boot to complete before starting homepass service
 - Add iptables rules that restrict wifi traffic to Nintendo internet addresses.
