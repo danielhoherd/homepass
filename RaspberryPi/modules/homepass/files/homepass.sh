@@ -37,6 +37,12 @@ accept_mac_file=/etc/hostapd/accept
 
 wmm_enabled=0
 eap_reauth_period=360000000
+
+logger_syslog=-1
+logger_syslog_level=2
+logger_stdout=-1
+logger_stdout_level=2
+
 EOF
 
     echo
