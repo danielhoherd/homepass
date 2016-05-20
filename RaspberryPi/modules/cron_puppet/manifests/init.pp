@@ -11,7 +11,7 @@ class cron_puppet {
         ensure  => present,
         command => "( cd /srv/code/homepass ; /usr/bin/git reset --hard ; /usr/bin/git clean -ffdx ; /usr/bin/git pull ) 2>&1 | /usr/bin/logger -t puppet-apply ; systemctl restart homepass ;",
         user    => root,
-        minute  => fqdn_rand(59, 'puppet-apply'),
+        minute  => '14',
         require => File['post-hook'],
     }
 }
