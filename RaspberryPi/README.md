@@ -23,6 +23,7 @@ Much of the design for this setup was inspired by the original [SpillPass](http:
 
 # TODO:
 
+- git update on boot, or perhaps on service start
 - randomize channel
 - restart service when git code is update
 - wait for boot to complete before starting homepass service
