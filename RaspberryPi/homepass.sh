@@ -10,14 +10,26 @@ pkill hostapd ; sleep 1 ;
 pkill -9 hostapd
 
 while true ; do
-    #p=$(sqlite3 "${DB}" "select * from (select mac, ssid from aps order by last_used asc limit 25 ) order by random() limit 1 ;")
-    p=$(sqlite3 "${DB}" "select * from (select mac,ssid from aps where last_used < datetime('now','-5 days') or last_used is NULL) order by random() limit 1 ;")
-    MAC="${p%|*}"
-    SSID="${p#*|}"
-    [ ! -z "$MAC" ] && [ ! -z "$SSID" ] || exit 1
-    sqlite3 "${DB}" "update aps set last_used = datetime('now') where mac = '$MAC' and ssid = '$SSID' ;"
+  #p=$(sqlite3 "${DB}" "select ssid,mac from (select mac,ssid from aps order by last_used asc limit 5 )                                 order by random() limit 1 ;")
+  p=$(sqlite3 "${DB}" "select ssid,mac from (select mac,ssid from aps where last_used < datetime('now','-5 days') or last_used is NULL) order by random() limit 1 ;")
+#  p=$(sqlite3 "${DB}" "
+#select ssid,mac from (
+#  select *, random() as r from (
+#    select * from aps order by last_used asc limit 5
+#  )
+#  UNION ALL
+#  select *, random() as r from (
+#    select mac,ssid from aps where last_used < datetime('now','-5 days') or last_used is NULL
+#  ) order by r
+#) limit 1 ;")
 
-    cat > $CONFIG_FILE <<EOF
+  p=$(sqlite3 "${DB}" "select * from (select mac,ssid from aps where last_used < datetime('now','-5 days') or last_used is NULL) order by random() limit 1 ;")
+  MAC="${p%|*}"
+  SSID="${p#*|}"
+  [ ! -z "$MAC" ] && [ ! -z "$SSID" ] || exit 1
+  sqlite3 "${DB}" "update aps set last_used = datetime('now') where mac = '$MAC' and ssid = '$SSID' ;"
+
+  cat > $CONFIG_FILE <<EOF
 ssid=$SSID
 bssid=$MAC
 
@@ -41,11 +53,10 @@ accept_mac_file=/etc/hostapd/accept
 wmm_enabled=0
 eap_reauth_period=360000000
 EOF
-
-    echo
-    date "+%F %T *******************************************************"
-    echo "                    Starting relay ${MAC} ${SSID} for ${RELAY_TIME} seconds"
-    echo
-    echo
-    timeout "${RELAY_TIME}" hostapd /etc/hostapd/hostapd.conf
+  echo
+  date "+%F %T *******************************************************"
+  echo "                    Starting relay ${MAC} ${SSID} for ${RELAY_TIME} seconds"
+  echo
+  echo
+  timeout "${RELAY_TIME}" hostapd /etc/hostapd/hostapd.conf
 done
