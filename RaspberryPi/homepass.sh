@@ -2,7 +2,7 @@
 # HeadURL: https://github.com/danielhoherd/homepass/blob/master/RaspberryPi/homepass.sh
 
 CONFIG_FILE=/etc/hostapd/hostapd.conf
-RELAY_TIME=200
+RELAY_TIME=100
 DB=/root/homepass.db
 
 service hostapd stop ; sleep 1 ;
