@@ -15,11 +15,6 @@ if [ $# -gt 0 ] ; then
   exit 0
 fi
 
-if [ ! -f "${DB}" ] || [ ! -r "${DB}" ] ; then
-  date "+%F %T%z ERROR: ${DB} is not readable!"
-  exit 1
-fi
-
 sqlite3 "${DB}" "select last_used from aps order by last_used asc ;" |
   awk '{print $1}' |
   sort |
