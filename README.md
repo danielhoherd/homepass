@@ -1,14 +1,21 @@
 [![Join the chat at https://gitter.im/danielhoherd/homepass](https://badges.gitter.im/danielhoherd/homepass.svg)](https://gitter.im/danielhoherd/homepass?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-# Purpose
-This repo is meant to unify a lot of the fragmented Nintendo 3DS Homepass resources.  Primarily it is host of a large list of Homepass Access Points, but contains additional software resources.
+# Notice about Firmware 11.1 September 2016
 
-Please fork this repo, modify it and submit a pull request if you want to add to it.  If you're not sure what this means, it's easier than you think!  Create a Github account, navigate to this repository, find the file you want to edit and click "edit this file", then step through the screens.
+As of firmware 11.1 and September 2016, only the attwifi SSID's in this list are the only ones that work. I've left the old ones in, but the default settings will only select the attwifi SSID's from the list.
+
+# Purpose
+
+This repo is meant to unify a lot of the fragmented Nintendo 3DS Homepass resources. Primarily it is host of a large list of Homepass Access Points, but contains additional software resources.
+
+Please fork this repo, modify it and submit a pull request if you want to add to it. If you're not sure what this means, it's easier than you think! Create a Github account, navigate to this repository, find the file you want to edit and click "edit this file", then step through the screens.
 
 # TODO:
+
 - Make a csv tender that validates, removes duplicate MAC,SSID pairs, and adds `NZ@McD1` for all `attwifi` entries
 
 # Resources
+
 - [Homepass.info](http://homepass.info) - The widely referenced community resource spreadsheet.
 - [SpillPass Pi](http://www.spillmonkey.com/?page_id=5) - Raspberry Pi homepass that was inspirational for some of the software here.
 - [relaymyhome](https://github.com/taintedzodiac/relaymyhome) - OS X homepass software that has worked well for several years and has several contributors with several forks.
@@ -16,6 +23,7 @@ Please fork this repo, modify it and submit a pull request if you want to add to
 - [3dbrew - Nintendo Zone](http://3dbrew.org/wiki/Nintendo_Zone) - 3dbrew info about Nintendo Zones
 
 # Observations about Streetpass Relay
+
 - Your 3DS has a list of whitelisted SSIDs that it will connect to.
 - When a whitelisted SSID is in range, your 3DS tries to connect to it.
 - If it connects to the wifi, it then tries to connect to the internet, specifically Nintendo's streetpass servers.
