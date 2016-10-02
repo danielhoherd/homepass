@@ -1,4 +1,4 @@
-#!/bin/bash -x
+#!/usr/bin/env bash
 # HeadURL: https://github.com/danielhoherd/homepass/blob/master/RaspberryPi/homepass.sh
 
 CONFIG_FILE=/etc/hostapd/hostapd.conf
@@ -10,20 +10,16 @@ pkill hostapd ; sleep 1 ;
 pkill -9 hostapd
 
 while true ; do
-  #p=$(sqlite3 "${DB}" "select ssid,mac from (select mac,ssid from aps order by last_used asc limit 5 )                                 order by random() limit 1 ;")
-  p=$(sqlite3 "${DB}" "select ssid,mac from (select mac,ssid from aps where last_used < datetime('now','-5 days') or last_used is NULL) order by random() limit 1 ;")
-#  p=$(sqlite3 "${DB}" "
-#select ssid,mac from (
-#  select *, random() as r from (
-#    select * from aps order by last_used asc limit 5
-#  )
-#  UNION ALL
-#  select *, random() as r from (
-#    select mac,ssid from aps where last_used < datetime('now','-5 days') or last_used is NULL
-#  ) order by r
-#) limit 1 ;")
+  aps=()
+  #aps+=( $(sqlite3 "${DB}" "select * from (select mac,ssid from aps where last_used < datetime('now','-8 hours') or last_used is NULL) order by random() ;") )
+  #aps+=( $(sqlite3 "${DB}" "select * from (select mac,ssid from aps order by last_used asc limit 10 ) order by random() ;") )
+  aps+=( $(sqlite3 "${DB}" "select * from (select mac,ssid from aps where ssid='attwifi' order by last_used asc limit 10 ) order by random() ;") )
+  aps+=( $(sqlite3 "${DB}" "select * from (select mac,ssid from aps where ssid='wifine' order by last_used asc limit 10 ) order by random() ;") )
+  aps+=( $(sqlite3 "${DB}" "select * from (select mac,ssid from aps where ssid='NZ@McD1' order by last_used asc limit 10 ) order by random() ;") )
+  aps+=( $(sqlite3 "${DB}" "select * from (select mac,ssid from aps where ssid='attwifi' and mac like '4E:53:50:4F:4F:%' and last_used < datetime('now','-12 hours') order by last_used asc limit 10 ) order by random() ;") )
 
-  p=$(sqlite3 "${DB}" "select * from (select mac,ssid from aps where last_used < datetime('now','-5 days') or last_used is NULL) order by random() limit 1 ;")
+  p=${aps[$(( RANDOM % ${#aps[@]} ))]}
+
   MAC="${p%|*}"
   SSID="${p#*|}"
   [ ! -z "$MAC" ] && [ ! -z "$SSID" ] || exit 1
@@ -38,7 +34,7 @@ bridge=br0
 ctrl_interface=wlan0
 ctrl_interface_group=0
 hw_mode=g
-channel=5
+channel=$(( RANDOM % 13 + 1 ))
 wpa=0
 rsn_pairwise=CCMP
 beacon_int=100
@@ -53,10 +49,6 @@ accept_mac_file=/etc/hostapd/accept
 wmm_enabled=0
 eap_reauth_period=360000000
 EOF
-  echo
-  date "+%F %T *******************************************************"
-  echo "                    Starting relay ${MAC} ${SSID} for ${RELAY_TIME} seconds"
-  echo
-  echo
-  timeout "${RELAY_TIME}" hostapd /etc/hostapd/hostapd.conf
+  echo "$(date "+%F %T%z") ${MAC} ${SSID} Starting relay for ${RELAY_TIME} seconds"
+  timeout "${RELAY_TIME}" hostapd /etc/hostapd/hostapd.conf 2>&1 | while read -r X ; do echo "$(date "+%F %T%z") ${MAC} ${SSID} ${X}" ; done ;
 done
