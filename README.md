@@ -1,5 +1,9 @@
 [![Join the chat at https://gitter.im/danielhoherd/homepass](https://badges.gitter.im/danielhoherd/homepass.svg)](https://gitter.im/danielhoherd/homepass?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
+# Notice about Firmware 11.1 2016-09
+
+As of firmware 11.1 and September 2016, the `attwifi` SSID's are the only ones in this list that work. I've left the old ones in, but the default settings should only select the `attwifi` SSID's from the list.
+
 # Purpose
 
 This repo is meant to unify a lot of the fragmented Nintendo 3DS Homepass resources. Primarily it is host of a large list of Homepass Access Points, but contains additional software resources.
