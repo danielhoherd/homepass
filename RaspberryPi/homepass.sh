@@ -13,9 +13,9 @@ while true ; do
   aps=()
   #aps+=( $(sqlite3 "${DB}" "select * from (select mac,ssid from aps where last_used < datetime('now','-8 hours') or last_used is NULL) order by random() ;") )
   #aps+=( $(sqlite3 "${DB}" "select * from (select mac,ssid from aps order by last_used asc limit 10 ) order by random() ;") )
+  #aps+=( $(sqlite3 "${DB}" "select * from (select mac,ssid from aps where ssid='wifine' order by last_used asc limit 10 ) order by random() ;") )
+  #aps+=( $(sqlite3 "${DB}" "select * from (select mac,ssid from aps where ssid='NZ@McD1' order by last_used asc limit 10 ) order by random() ;") )
   aps+=( $(sqlite3 "${DB}" "select * from (select mac,ssid from aps where ssid='attwifi' order by last_used asc limit 10 ) order by random() ;") )
-  aps+=( $(sqlite3 "${DB}" "select * from (select mac,ssid from aps where ssid='wifine' order by last_used asc limit 10 ) order by random() ;") )
-  aps+=( $(sqlite3 "${DB}" "select * from (select mac,ssid from aps where ssid='NZ@McD1' order by last_used asc limit 10 ) order by random() ;") )
   aps+=( $(sqlite3 "${DB}" "select * from (select mac,ssid from aps where ssid='attwifi' and mac like '4E:53:50:4F:4F:%' and last_used < datetime('now','-12 hours') order by last_used asc limit 10 ) order by random() ;") )
 
   p=${aps[$(( RANDOM % ${#aps[@]} ))]}
