@@ -2,7 +2,7 @@
 
 # Notice about Firmware 11.1 2016-09
 
-As of firmware 11.1 and September 2016, only the attwifi SSID's in this list are the only ones that work. I've left the old ones in, but the default settings will only select the attwifi SSID's from the list.
+As of firmware 11.1 and September 2016, the `attwifi` SSID's are the only ones in this list that work. I've left the old ones in, but the default settings should only select the `attwifi` SSID's from the list.
 
 # Purpose
 
