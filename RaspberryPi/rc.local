@@ -6,5 +6,5 @@ if [ "$_IP" ]; then
   printf "My IP address is %s\n" "$_IP"
 fi
 service hostapd stop
-screen -S HomePassScript sh /root/homepass.sh
+screen -S HomePassScript sh /root/homepass.sh | tee -a /root/homepass.log
 exit 0
