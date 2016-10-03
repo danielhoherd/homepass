@@ -2,7 +2,13 @@
 
 # Notice about Firmware 11.1 2016-09
 
-As of firmware 11.1 and September 2016, the `attwifi` SSID's are the only ones in this list that work. I've left the old ones in, but the default settings should only select the `attwifi` SSID's from the list.
+As of firmware 11.1, the `attwifi` SSID's are the only ones in this list that work in North America. I've left all of the entries in the database because I suspect they will still work in their respective countries, but the default settings only select the `attwifi` SSID's from the list. **If you have done testing on the new behaviors, please contribute!**
+
+ SSID   | <11.0.30 | 11.1
+:-----: | :------: | :--:
+attwifi |    ✔     |  ✔
+NZ@McD1 |    ✔     |  ✘
+wifine  |    ✔     |  ✘
 
 # Purpose
 
