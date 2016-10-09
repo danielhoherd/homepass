@@ -15,7 +15,7 @@ if [ $# -gt 0 ] ; then
   exit 0
 fi
 
-sqlite3 "${DB}" "select last_used from aps order by last_used asc ;" |
+sqlite3 "${DB}" "select last_used from aps where last_used NOT NULL order by last_used asc ;" |
   awk '{print $1}' |
   sort |
   uniq -c |
