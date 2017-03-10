@@ -1,4 +1,4 @@
-#!/usr/local/bin/python3
+#!/usr/bin/env python3
 # HeadURL: https://github.com/danielhoherd/homepass/blob/master/csv-to-kml.py
 
 """
