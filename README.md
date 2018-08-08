@@ -1,4 +1,6 @@
-[![Join the chat at https://gitter.im/danielhoherd/homepass](https://badges.gitter.im/danielhoherd/homepass.svg)](https://gitter.im/danielhoherd/homepass?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+# The Death of Homepass
+
+On March 28, 2018, Nintendo shut down the streetpass relay services, effectively killing off homepass as it has been widely used for several years.
 
 # Notice about Firmware 11.1 2016-09
 
